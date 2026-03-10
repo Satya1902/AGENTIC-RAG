@@ -1,0 +1,33 @@
+
+# pgvector
+# psycopg2
+# openai
+
+# pytesseract
+# Pillow
+
+
+
+dotenv                     # To load environment variables from a .env file
+fastapi                    # To create the backend API for the RAG system
+uvicorn                    # To run the FastAPI server
+pydantic_settings          # To manage configuration settings using environment variables
+
+
+gradio                     # To create a user-friendly interface for testing the RAG system
+requests                   # To make API calls to fastapi server backend
+
+
+sqlalchemy                 # To interact with the SQLite database for storing metadata and query logs using SQLAlchemy ORM
+greenlet                   # Required by SQLAlchemy for asynchronous database operations
+
+
+
+faiss-cpu                  # To create and manage the vector index for retrieval
+sentence-transformers      # To generate embeddings for the text chunks
+
+
+google-generativeai        # To interact with Google's Gemini API for generating responses based on retrieved information     
+google-adk                 # To create the agentic RAG system using Google's Application Development Kit (ADK)
+pymupdf                    # fitz - To extract text from PDF documents for ingestion into the RAG system
+rank_bm25                  # To retrieve the top k most relevant chunks based on user query from the chunks/documents/database    

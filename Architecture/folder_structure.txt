@@ -1,0 +1,67 @@
+agentic_rag_system/
+
+├── app
+│
+├── api
+│   └── main.py
+│
+├── agents
+│   └── rag_agent.py
+│
+├── retrieval
+│   ├── hybrid_retriever.py
+│   ├── vector_search.py
+│   └── bm25_search.py
+│
+├── database
+│   ├── db.py
+│   └── models.py
+│
+├── ingestion
+│   ├── pdf_loader.py
+│   ├── ocr_loader.py
+│   └── embedder.py
+│
+├── tools
+│   ├── weather_tool.py
+│   └── google_search_tool.py
+│
+├── ui
+│   └── gradio_app.py
+│
+├── config
+│   └── settings.py
+│
+└── requirements.txt
+
+
+
+
+
+Agent Call Flow (Sequential)
+
+
+User Query
+    │
+    ▼
+Orchestrator Agent
+    │
+    ├──► Query Rewriter Agent
+    │        └─> updates `agent_flow` + logs start/end
+    │
+    ├──► Planner Agent
+    │        └─> updates `agent_flow` + logs start/end
+    │
+    ├──► Retriever Agent
+    │        ├─> Calls BM25 / Vector / Hybrid search
+    │        └─> updates outputs + logs latencies
+    │
+    ├──► Web Agent
+    │        ├─> Calls search_agent → google_search
+    │        └─> updates outputs + logs tool calls
+    │
+    └──► Evaluator Agent
+             └─> Approves/Rejects → feedback loop to Orchestrator if rejected
+    │
+    ▼
+Final Answer & Observability Dashboard
